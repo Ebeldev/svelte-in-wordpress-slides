@@ -39,7 +39,7 @@
 					<h3>To follow along</h3>
 					<p>https://ebeldev.github.io/svelte-in-wordpress-slides/</p>
 				</section>
-				
+
 				<section>
 					<h2>the goal for today</h2>
 					<ul>
@@ -47,9 +47,9 @@
 						<li class="fragment fade-in-then-semi-out">Basics of Svelte</li>
 						<li class="fragment fade-in">Demo time !</li>
 					</ul>
-					
+
 				</section>
-				
+
 				<section>
 					<h2>Étienne Bélanger</h2>
 					<div class="fbx fbx30 bio pfz08">
@@ -111,11 +111,14 @@
 					</section>
 					<section>
 						<h4>Svelte is a compiler not a framework</h4>
+						<p>
+
+						</p>
 						<ul>
-							<li class="fragment fade-in">Svelte is meant to be the framework that isn't really a framework</li>
-							<li class="fragment fade-in">It's a tool that compile your code at build step</li>
-							<li class="fragment fade-in">Builds your code as just plain javascript</li>
-							<li class="fragment fade-in">Just ship a pure javascript file</li>
+							<li class="fragment fade-in">Svelte is meant to be the framework that <span class="pln">is not a framework</span></li>
+							<li class="fragment fade-in">It's a tool that <span class="pln">compile</span> your code at <span class="pln">build time</span></li>
+							<li class="fragment fade-in">Builds your code as just <span class="pln">plain javascript</span></li>
+							<li class="fragment fade-in">Only need to include the <span class="pln">buildFile.js file</span></li>
 							<li class="fragment fade-in">No framework at <span class="pln">runtime</span></li>
 						</ul>
 					</section>
@@ -125,7 +128,7 @@
 								<img src="./assets/inception.gif" alt="">
 							</div>
 							<div class="content">
-								
+
 								<h4>Use it in any project</h4>
 								<ul>
 									<li class="fragment fade-in">In your theme</li>
@@ -152,18 +155,18 @@
 						<pre><code class="js" data-trim>
 						(() => {
 						 const square = number => number * number;
-							
+
 						 const secondNumber = square(firstNumber);
 						 const firstNumber = 42;
-							
+
 						 console.log(secondNumber);
 						})();
 						</code></pre>
-						
+
 					</section>
 					<section>
 						<h4>True reactivity</h4>
-						<p><span class="pln">$: foo = bar</span></p>	
+						<p><span class="pln">$: foo = bar</span></p>
 						<pre><code class="js" data-trim>
 						// in vanilla js
 						let foo = 10
@@ -171,19 +174,19 @@
 						foo = bar // bar = 20 no reactivity
 						bar = foo + 10 // now bar becomes 25
 
-						// in Svelte 
+						// in Svelte
 						let foo = 10
-						$: bar = foo + 10 // now bar is 20 
-						foo = 15 
+						$: bar = foo + 10 // now bar is 20
+						foo = 15
 						// bar is now 25 because it is bound to the value of foo
 						</code></pre>
 					</section>
-					
+
 					<section>
 						<h4>Write less code</h4>
 						<h5>with Svelte</h5>
-						
-						<pre class="fragment fade-in sW"><code class="js" data-trim>
+
+						<pre class="fragment sW"><code class="js" data-trim>
 							<script>
 							let age = 0
 							let year = 0
@@ -204,7 +207,7 @@
 					</section>
 					<section>
 						<h5>with React</h5>
-						<pre class="fragment fade-in sW"><code class="jsx" data-trim>
+						<pre class="fragment sW"><code class="jsx" data-trim>
 							import React, {Component} from 'react'
 							export default () => {
 							 const {age, setAge} = useState(0)
@@ -233,7 +236,7 @@
 					<section>
 						<h4>Performant</h4>
 						<p class="fz06">Svelte compiles your code into low-level, pure javascript that will interact directly with the DOM</p>
-						<img src="./assets/fast.gif#h70" alt="">			
+						<img src="./assets/fast.gif#h70" alt="">
 					</section>
 				</section>
 				<section>
@@ -245,7 +248,7 @@
 						<pre><code data-trim>
 							npx degit sveltejs/template my-svelte-project
 							cd my-svelte-project
-							
+
 							npm install
 							npm run dev
 						</code></pre>
@@ -256,58 +259,58 @@
 						<p class="fragment fade-in">You write your code in a .svelte file</p>
 						<pre class="fragment fade-in"><code data-trim>
 						<script>
-						let name = 'world';
+						 let name = 'world';
 						</script>
+
 						<style>
-						h1{
-						 color: blue;
-						}
+						 h1{
+						  color: blue;
+						 }
 						</style>
+
 						<h1>Hello {name}!</h1>
 						</code></pre>
 					</section>
 					<section>
 						<h4>single mounting component</h4>
-						<p class="fragment fade-in">You write your code in a .svelte file</p>
 						<pre class="fragment fade-in"><code data-trim>
 						// main.js
 						import App from './App.svelte';
-						
+
 						const app = new App({
 						 target: document.body
 						});
-						
+
 						export default app;
 						</code></pre>
 					</section>
 					<section>
 						<h4>multiple mounting component</h4>
-						<p class="fragment fade-in">You write your code in a .svelte file</p>
 						<pre class="fragment fade-in"><code data-trim>
 						// main.js
 						import App from './App.svelte';
 						import App2 from './App2.svelte';
-						
+
 						const app = new App({
 						 target: document.getElementById('div1')
 						});
-						
+
 						const app2 = new App({
 						 target: document.getElementById('div2')
 						});
-						
+
 						export default app;
 						</code></pre>
 					</section>
 					<section>
 						<h4>Import Component</h4>
 						<p>Scope styles</p>
-						<pre><code class="jsx" data-trim>
+						<pre><code data-trim>
 						// App.svelte
 						<script>
 						 import Nested from './Nested.svelte';
 						</script>
-						
+
 						<style>
 						 p {
 						  color: purple;
@@ -315,7 +318,7 @@
 						  font-size: 2em;
 						 }
 						</style>
-						
+
 						<p>These styles...</p>
 						<Nested name="John Doe" />
 						</code></pre>
@@ -327,7 +330,7 @@
 						 <script>
 						  export let name = 'Default name';
 						 </script>
-							
+
 						 <style>
 						  p {
 						   color: purple;
@@ -335,7 +338,7 @@
 						   font-size: 2em;
 						  }
 						 </style>
-							
+
 						 <p>{name}</p>
 						</code></pre>
 					</section>
@@ -352,7 +355,7 @@
 						  count += 1;
 						 }
 						</script>
-						
+
 						<button on:click={handleClick}>
 						 Clicked {count} {count === 1 ? 'time' : 'times'}
 						</button>
@@ -362,13 +365,18 @@
 					</section>
 					<section>
 						<h4>If and else if</h4>
+						<p>{#if condition} {:else if} {:else} {/if}</p>
+
 						<pre><code data-trim>
 						<script>
 						 let x = 7;
 						</script>
-						
-						{#if x > 10}
+
+						{#if x >= 10}
 						 <p>{x} is greater than 10</p>
+						{:else if x > 5}
+						 <p>{x} is greater than 10</p>
+
 						{:else}
 						 {#if 5 > x}
 						  <p>{x} is less than 5</p>
@@ -380,7 +388,7 @@
 					</section>
 					<section>
 						<h4>For each</h4>
-						<p>{#each yourArray as yourSingleElement}</p>
+						<p>{#each yourArray as yourSingleElement} {/each}</p>
 						<pre><code data-trim>
 						<script>
 						 let cats = [
@@ -389,9 +397,9 @@
 						  { id: 'OUtn3pvWmpg', name: 'Henri The Existential Cat' }
 						 ];
 						</script>
-						
+
 						<h1>The Famous Cats of YouTube</h1>
-						
+
 						<ul>
 						 {#each cats as cat}
 						 <li><a target="_blank" href="website.com/watch?v={cat.id}">
@@ -412,7 +420,7 @@
 						  alert(event.detail.text);
 						 }
 						</script>
-						
+
 						<Outer on:message={handleMessage} />
 						</code></pre>
 					</section>
@@ -424,12 +432,12 @@
 						 let a = 1;
 						 let b = 2;
 						</script>
-						
+
 						<label>
 						 <input type=number bind:value={a} min=0 max=10>
 						 <input type=range bind:value={a} min=0 max=10>
 						</label>
-						
+
 						<p>{a} + {b} = {a + b}</p>
 						</code></pre>
 					</section>
@@ -442,14 +450,14 @@
 							<li class="fragment fade-in">Motion</li>
 							<li class="fragment fade-in">Transitions</li>
 							<li class="fragment fade-in">Animations</li>
-							<li class="fragment fade-in">Actions</li>
+							<li class="fragment fade-in">Async</li>
 							<li class="fragment fade-in">Context API</li>
 							<li class="fragment fade-in">Slots in component</li>
 							<li class="fragment fade-in">Debug tags</li>
 							<li class="fragment fade-in">So much more...</li>
 						</ul>
 					</section>
-					
+
 				</section>
 				<section>
 					<section>
