@@ -4,14 +4,19 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Svelte in WordPress</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+					integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="css/customCss.css">
+
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -25,14 +30,437 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Intro</section>
-				<section>Goal of the presentation</section>
-				<section>Bio</section>
-				<section>Why use Svelte</section>
-				<section>Svelte Basics</section>
-				<section>Include Svelte in WordPress</section>
-				<section>Demo</section>
-				<section>Reference</section>
+				<section data-markdown>
+					<textarea data-template>
+						# Svelte-in-WordPress
+					</textarea>
+				</section>
+				<section>
+					<h3>To follow along</h3>
+					<p>https://ebeldev.github.io/svelte-in-wordpress-slides/</p>
+				</section>
+				
+				<section>
+					<h2>the goal for today</h2>
+					<ul>
+						<li class="fragment fade-in-then-semi-out">Why and when to use Svelte</li>
+						<li class="fragment fade-in-then-semi-out">Basics of Svelte</li>
+						<li class="fragment fade-in-then-semi-out">Demo time !</li>
+					</ul>
+					
+				</section>
+				
+				<section>
+					<h2>Étienne Bélanger</h2>
+					<div class="fbx fbx30 bio pfz08">
+						<div>
+							<img src="./assets/portrait2018.jpg" />
+						</div>
+						<div class="list-wrapper">
+							<ul class="noLT">
+								<li class="fragment fade-in-then-semi-out">WordPress lover for more then 10 years</li>
+								<li class="fragment fade-in-then-semi-out">Love to explore new tools and territories</li>
+								<li class="fragment fade-in-then-semi-out">Work @ DistrictWeb as full-stack developer</li>
+								<li class="fragment fade-in-then-semi-out">Contact
+									<ul>
+										<li><i class="fas fa-envelope-square"></i>etienne@etiennebelanger.com</li>
+										<li><i class="fab fa-linkedin"></i>belangeretienne</li>
+										<li><i class="fab fa-twitter"></i>@ebeldev</li>
+										<li><i class="fab fa-github"></i>@ebeldev</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section>
+					<section>
+						<div class="fbx fbx50">
+							<div class="logo">
+								<img src="./assets/svelte-logo.png" />
+							</div>
+							<div class="content">
+								<h3 class="fragment fade-in">What is Svelte ??</h3>
+								<h3 class="fragment fade-in">Why use Svelte ??</h3>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h2>Disclaimer</h2>
+						<div class="fbx fbx50">
+							<img src="./assets/caution.webp#h70" alt="">
+							<div class="content">
+								<p>I'm not a expert. I'm just a lover of Svelte and I want to spread the word about Svelte.</p>
+
+								<p>So, please, if I make any mistake, just tell me so!</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h2>Svelte Concepts</h2>
+					</section>
+					<section>
+						<h3>Why I love it</h3>
+						<ul>
+							<li class="fragment fade-in">Svelte is a compiler not a framework</li>
+							<li class="fragment fade-in">Use it in any project</li>
+							<li class="fragment fade-in">Is truely reactive</li>
+							<li class="fragment fade-in">Write less code</li>
+							<li class="fragment fade-in">Super performant</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Svelte is a compiler not a framework</h4>
+						<ul>
+							<li class="fragment fade-in">Svelte is meant to be the framework that isn't really a framework</li>
+							<li class="fragment fade-in">It's a tool that compile your code at build step</li>
+							<li class="fragment fade-in">Builds your code as just plain javascript</li>
+							<li class="fragment fade-in">Just ship a pure javascript file</li>
+							<li class="fragment fade-in">No framework at <span class="pln">runtime</span></li>
+						</ul>
+					</section>
+					<section>
+						<div class="fbx fbx30">
+							<div class="img">
+								<img src="./assets/inception.gif" alt="">
+							</div>
+							<div class="content">
+								
+								<h4>Use it in any project</h4>
+								<ul>
+									<li class="fragment fade-in">In your theme</li>
+									<li class="fragment fade-in">In your plugin</li>
+									<li class="fragment fade-in">In your client child theme</li>
+									<li class="fragment fade-in">As a stand alone Single page app</li>
+									<li class="fragment fade-in">In a Vue or React app</li>
+									<li class="fragment fade-in">On top of any other actual project, plugin, theme</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h4>Truely reactive</h4>
+						<ul>
+							<li class="fragment fade-in">No virtual DOM</li>
+							<li class="fragment fade-in">No need to use <span class="pln">setState</span> or <span class="pln">useState</span></li>
+							<li class="fragment fade-in">It uses javascript similar to <span class="pln">Observable</span></li>
+							<li class="fragment fade-in">Run your code as <span class="pln">topological</span> not top to bottom</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Breaking code</h4>
+						<pre><code class="js" data-trim data-line-numbers="4">
+							(() => {
+								const square = number => number * number;
+								
+								const secondNumber = square(firstNumber);
+								const firstNumber = 42;
+								
+								console.log(secondNumber);
+							})();
+						</code></pre>
+						
+					</section>
+					<section>
+						<h4>True reactivity</h4>
+						<p><span class="pln">$: foo = bar</span></p>	
+						<pre><code class="js" data-trim data-line-numbers="4">
+							// in vanilla js
+							let foo = 10
+							let bar = foo + 10 // bar = 20
+							foo = bar // bar = 20 no reactivity
+							bar = foo + 10 // now bar becomes 25
+
+							// in Svelte 
+							let foo = 10
+							$: bar = foo + 10 // now bar is 20 
+							foo = 15 // bar is now 25 because it is bound to the value of foo
+						</code></pre>
+					</section>
+					
+					<section>
+						<h4>Write less code</em></h4>
+						<div class="fbx fbx50 fbxstart">
+							<div>
+								<h5>Svelte</h5>
+								
+								<pre class="fragment fade-in sW"><code class="js" data-trim>
+									<script>
+									let age = 0
+									let year = 0
+
+									function calculateAge() {
+										const currentYear = new Date().getFullYear()
+										age = currentYear - year
+									}
+									</script>
+									<h5>What year were you born?</h5>
+									<input bind:value={year} placeholder="type in your birth year" />
+									<button on:click={calculateAge} type=button>Submit</button>
+									{#if age}
+										<p>You are {age} years old</p>
+									{/if}
+								</code></pre>
+							</div>
+							<div>
+								<h5>React</h5>
+							
+								<pre class="fragment fade-in sW"><code class="jsx" data-trim>
+									import React, {Component} from 'react'
+
+									export default () => {
+										const {age, setAge} = useState(0)
+										const {year, setYear} = useState(0)
+									
+										function calculateAge(){
+											const currentYear = new Date().getFullYear()
+											setAge(currentYear - year)
+										}
+
+										function handleChange(event){
+											setYear(event.target.value)
+										}
+
+										return(
+											<div>
+												<h4>What year were you born?</h4>
+												<input
+													type="number"
+													placeholder="type in your birth year"
+													value={year}
+													onChange={handleChange}
+												/>
+												<button type="button" onClick={calculateAge}>Submit</button>
+
+												{age ? <p>You are {age} years old</p> : null}
+											</div>
+										)
+									}
+
+
+								</code></pre>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h4>Performant</h4>
+						<p class="fz06">Svelte compiles your code into low-level, pure javascript that will interact directly with the DOM</p>
+						<img src="./assets/fast.gif#h70" alt="">			
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Svelte Basic</h3>
+					</section>
+					<section>
+						<h4>Installation</h4>
+						<pre><code data-trim>
+							npx degit sveltejs/template my-svelte-project
+							cd my-svelte-project
+							
+							npm install
+							npm run dev
+						</code></pre>
+					</section>
+
+					<section>
+						<h4>Basic Page template</h4>
+						<p class="fragment fade-in">You write your code in a .svelte file</p>
+						<pre class="fragment fade-in"><code data-trim>
+							<script>
+							 let name = 'world';
+							</script>
+							<style>
+							 h1{
+							  color: blue;
+							 }
+							</style>
+							<h1>Hello {name}!</h1>
+						</code></pre>
+					</section>
+					<section>
+						<h4>Import Component</h4>
+						<p>Scope styles</p>
+						<pre><code data-trim>
+							// App.svelte
+							<script>
+							 import Nested from './Nested.svelte';
+							</script>
+							
+							<style>
+							 p {
+							  color: purple;
+							  font-family: 'Comic Sans MS';
+							  font-size: 2em;
+							 }
+							</style>
+							
+							<p>These styles...</p>
+							<Nested 
+								name="John Doe"
+							/>
+						</code></pre>
+					</section>
+					<section>
+						<h4> Nested component</h4>
+						<pre><code data-trim>
+						 // Nested.svelte
+						 <script>
+						  export let name = 'Default name';
+						 </script>
+							
+						 <style>
+						  p {
+						   color: purple;
+						   font-family: 'Comic Sans MS';
+						   font-size: 2em;
+						  }
+						 </style>
+							
+						 <p>{name}</p>
+						</code></pre>
+					</section>
+					<section>
+						<h4>Reactive variables</h4>
+						<pre><code data-trim>
+							<script>
+								let count = 0;
+
+								$: foo = count + ' age';
+
+								function handleClick() {
+									count += 1;
+								}
+							</script>
+							
+							<button on:click={handleClick}>
+								Clicked {count} {count === 1 ? 'time' : 'times'}
+							</button>
+							<p>This is reactive variable {foo}</p>
+						</code></pre>
+					</section>
+					<section>
+						<h4>If and else if</h4>
+						<pre><code data-trim>
+							<script>
+								let x = 7;
+							</script>
+							
+							{#if x > 10}
+								<p>{x} is greater than 10</p>
+							{:else}
+								{#if 5 > x}
+									<p>{x} is less than 5</p>
+								{:else}
+									<p>{x} is between 5 and 10</p>
+								{/if}
+							{/if}
+						</code></pre>
+					</section>
+					<section>
+						<h4>For each</h4>
+						<pre><code data-trim data-line-numbers="12,16">
+							<script>
+								let cats = [
+									{ id: 'J---aiyznGQ', name: 'Keyboard Cat' },
+									{ id: 'z_AbfPXTKms', name: 'Maru' },
+									{ id: 'OUtn3pvWmpg', name: 'Henri The Existential Cat' }
+								];
+							</script>
+							
+							<h1>The Famous Cats of YouTube</h1>
+							
+							<ul>
+								{#each cats as cat}
+								<li><a target="_blank" href="https://www.youtube.com/watch?v={cat.id}">
+										{cat.name}
+									</a></li>
+								{/each}
+							</ul>
+						</code></pre>
+					</section>
+					<section>
+						<h4>Event forwarding</h4>
+						<pre><code data-trim data-line-numbers="9">
+							<script>
+								import Outer from './Outer.svelte';
+
+								function handleMessage(event) {
+									alert(event.detail.text);
+								}
+							</script>
+							
+							<Outer on:message={handleMessage} />
+						</code></pre>
+					</section>
+					<section>
+						<h4>Binding data</h4>
+						<pre><code data-trim data-line-numbers="7,8">
+							<script>
+								let a = 1;
+								let b = 2;
+							</script>
+							
+							<label>
+								<input type=number bind:value={a} min=0 max=10>
+								<input type=range bind:value={a} min=0 max=10>
+							</label>
+							
+							<p>{a} + {b} = {a + b}</p>
+						</code></pre>
+					</section>
+					<section>
+						<h4>Other awesome functionnality</h4>
+
+
+						<ul class="fbx fbxList">
+							<li class="fragment fade-in">Life Cycle</li>
+							<li class="fragment fade-in">Stores</li>
+							<li class="fragment fade-in">Motion</li>
+							<li class="fragment fade-in">Transitions</li>
+							<li class="fragment fade-in">Animations</li>
+							<li class="fragment fade-in">Actions</li>
+							<li class="fragment fade-in">Context API</li>
+							<li class="fragment fade-in">Slots in component</li>
+							<li class="fragment fade-in">Debug tags</li>
+						</ul>
+					</section>
+					
+				</section>
+				<section>
+					<section>
+						<h3>Include Svelte in WordPress</h3>
+						<p>In a theme or a plugin</p>
+					</section>
+					<section>
+						<ul>
+							<li class="fragment fade-in-then-semi-out">npm install svelte packages</li>
+							<li class="fragment fade-in-then-semi-out">Build a Gulp or Webpack or Rollup config file</li>
+							<li class="fragment fade-in-then-semi-out">Structure your folders for source files and compiled files</li>
+							<li class="fragment fade-in-then-semi-out">Run your compiler</li>
+							<li class="fragment fade-in-then-semi-out">Add a div with a id in your theme or plugin or by action hook</li>
+							<li class="fragment fade-in-then-semi-out">Enqueue your script <span class="pln">bundle.js</span> file in functions.php</li>
+							<li class="fragment fade-in-then-semi-out">Enqueue your style <span class="pln">bundle.css</span> file in functions.php</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					
+					<h3>Demo time!</h3>
+						<img src="./assets/demo.webp" alt="">
+						
+						
+					
+				</section>
+				<section>
+					<h2>Reference</h2>
+					<ul>
+						<li><a href="https://svelte.dev/">Svelte</a> = Svelte for web apps</li>
+						<li><a href="https://sapper.svelte.dev/">Sapper</a> = Server side rendering</li>
+						<li><a href="https://svelte-native.technology/"> Svelte Native</a> = Svelte for native apps</li>
+						<li><a href="https://svelte.dev/tutorial/basics">Svelte tutorial</a> = Best tutorial to start</li>
+					</ul>
+				</section>
 			</div>
 		</div>
 
@@ -43,6 +471,10 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				controls: false,
+
+				// Display a presentation progress bar
+				progress: false,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
